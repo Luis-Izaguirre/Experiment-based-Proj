@@ -3,7 +3,7 @@ let cartIcon = document.querySelector('#cart-icon');
 let cart = document.querySelector('.cart');
 let closeCart = document.querySelector('#close-cart');
 
-// Open Cart
+// Open Cart, adds active to dom in css file
 cartIcon.onclick = () => {
     cart.classList.add("active");
 };
@@ -14,14 +14,14 @@ closeCart.onclick = () => {
 };
 
 
-// Cart Working JS
+// Cart Working JS, checks if web browser document is loading and applies 'ready' function
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", ready)
 }else{
    ready(); 
 }
 
-// Making Function
+// Making Function, iterates through class 'cart-remove' and event listens if on click, then calls function
 function ready() {
     // Remove Items From Cart
     var removeCartButtons = document.getElementsByClassName("cart-remove");
@@ -32,7 +32,7 @@ function ready() {
     }
 }
 
-// Remove Items From Cart
+// Remove Items From Cart, function to remove an item
 function removeCartItem(event){
     var buttonClicked = event.target;
     buttonClicked.parentElement.remove();
