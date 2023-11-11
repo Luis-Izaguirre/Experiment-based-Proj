@@ -38,6 +38,7 @@ function ready() {
         input.addEventListener("change", quantityChanged);
     }
     //Add To Cart
+    //Loops through "add-cart" and listens for the click event
     var addCart = document.getElementsByClassName("add-cart");
     for (var i = 0; i < addCart.length; i++){
         var button = addCart[i];
@@ -45,13 +46,17 @@ function ready() {
     }
 }
 
-// Remove Items From Cart, function to remove an item
+// Remove Items From Cart
+//removes the parent element in other words removes the item
+//Then it updates the total by calling function
 function removeCartItem(event){
     var buttonClicked = event.target;
     buttonClicked.parentElement.remove();
     updateTotal();
 }
 // Quantity Changes
+//checks if the input for quantity has not changed and if value is 0 or less,
+//If it's not then it will update the quantity by calling function
 function quantityChanged(event){
     var input = event.target;
     if(isNaN(input.value) || input.value <= 0){
@@ -61,6 +66,8 @@ function quantityChanged(event){
 }
 
 // Add To Cart
+// grabs the events from the web doc and retrieves data if clicked on
+//specifically the title, price, and productImg update and are printed to console
 function addCartClicked(event){
     var button = event.target;
     var shopProducts = button.parentElement;
