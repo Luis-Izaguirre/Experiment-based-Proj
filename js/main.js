@@ -44,7 +44,20 @@ function ready() {
         var button = addCart[i];
         button.addEventListener("click", addCartClicked);
     }
+    // Buy Button Work
+    document.getElementsByClassName("btn-buy")[0].addEventListener("click", buyButtonClicked);
 }
+// Buy Button
+function buyButtonClicked(){
+    alert("Your Order has been placed");
+    var cartContent = document.getElementsByClassName("cart-content")[0];
+    while (cartContent.hasChildNodes()){
+        cartContent.removeChild(cartContent.firstChild);
+    }//End While
+
+    updateTotal();
+}//End buyButtonClicked Function
+
 
 // Remove Items From Cart
 //removes the parent element in other words removes the item
@@ -92,10 +105,10 @@ function addProductToCart(title, price, productImg){
     }
 
 var cartBoxContent = `
-                    <img src="img/product2.jpg" alt="" class="cart-img">
+                    <img src="${productImg}" alt="" class="cart-img">
                     <div class="detail-box">
-                        <div class="cart-product-title">Earbuds</div>
-                        <div class="cart-price">$25</div>
+                        <div class="cart-product-title">${title}</div>
+                        <div class="cart-price">${price}</div>
                         <input type="number" value="1" class="cart-quantity">
                     </div>
                     <!-- Remove Cart -->
@@ -123,8 +136,9 @@ function updateTotal(){
         var quantityElement = cartBox.getElementsByClassName("cart-quantity")[0];
         var price = parseFloat(priceElement.innerText.replace('$', ""));
         var quantity = quantityElement.value;
-        total = total + (price * quantity);
-
-        document.getElementsByClassName("total-price")[0].innerText = '$' + total;
-    }
+    } 
+    // If Price Contains Some Cents Value, Add within for loop if you want the total in the output of buy now
+    total = total + (price * quantity);
+    document.getElementsByClassName("total-price")[0].innerText = '$' + total;
+    
 }
